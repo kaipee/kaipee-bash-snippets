@@ -4,7 +4,6 @@ function printTitle ()
 { # Programmatically generate a boxed title
   if [ ! $# -eq 0 ]; then
     _TITLE="$*"                                             # Take all arguments as a single string
-    clear
     printf '\n\u250c\u2500\u2500\u2500'                     # Print a single top-left angle, followed by spacing of 3 horizontal lines
     for i in $(seq 1 ${#_TITLE}); do printf '\u2500'; done  # Print a single horizontal line for each character in the title text
     printf '\u2500\u2500\u2500\u2510\n'                     # Print 3 horizontal lines, followed by a single top-right angle
@@ -19,4 +18,7 @@ function printTitle ()
 
 
 # Example usage
-printTitle 'This is a title - try to keep it alphanumerical'
+clear
+printTitle 'This is a title'
+echo "Some other text or script output can be placed between boxed titles."
+printTitle 'Try to keep it alphanumerical'
