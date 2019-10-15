@@ -1,17 +1,22 @@
 #! /bin/bash
 
-set -u
-
 function printTitle ()
 { # Programmatically generate a boxed title
-  _TITLE="$*"
-  printf '\n\u250c\u2500\u2500\u2500'
-  for i in $(seq 1 ${#_TITLE}); do printf '\u2500'; done
-  printf '\u2500\u2500\u2500\u2510\n'
-  printf "\u2502   $_TITLE   \u2502\n"
-  printf '\u2514\u2500\u2500\u2500'
-  for i in $(seq 1 ${#_TITLE}); do printf '\u2500'; done
-  printf '\u2500\u2500\u2500\u2518\n\n'
+  if [ ! $# -eq 0 ]; then
+    _TITLE="$*"                                             # Take all arguments as a single string
+    clear
+    printf '\n\u250c\u2500\u2500\u2500'                     # Print a single top-left angle, followed by spacing of 3 horizontal lines
+    for i in $(seq 1 ${#_TITLE}); do printf '\u2500'; done  # Print a single horizontal line for each character in the title text
+    printf '\u2500\u2500\u2500\u2510\n'                     # Print 3 horizontal lines, followed by a single top-right angle
+    printf "\u2502   $_TITLE   \u2502\n"                    # Print a vertical line > 3 spaces > title text > 3 spaces > vertical line
+    printf '\u2514\u2500\u2500\u2500'                       # Print a single bottom-left angle, followed by spacing of 3 straight lines
+    for i in $(seq 1 ${#_TITLE}); do printf '\u2500'; done  # Print a single horizontal line for each character in the title text
+    printf '\u2500\u2500\u2500\u2518\n\n'                   # Print 3 horizontal lines, followed by a single bottom-right angle
+  else
+    return 0
+  fi
 }
 
-printTitle "This is a title"
+
+# Example usage
+printTitle 'This is a title - try to keep it alphanumerical'
