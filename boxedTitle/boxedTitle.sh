@@ -1,6 +1,6 @@
 #! /bin/bash
 
-function printTitle ()
+function boxedTitle ()
 { # Programmatically generate a boxed title
   if [ ! $# -eq 0 ]; then
     _TITLE="$*"                                             # Take all arguments as a single string
